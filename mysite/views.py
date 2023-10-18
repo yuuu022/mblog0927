@@ -2,6 +2,7 @@ from django.shortcuts import render
 from mysite.models import Post #mysite這個資料夾中匯入先前已設好的東西
 from django.http import HttpResponse
 from datetime import datetime
+from django.shortcuts import redirect
 
 # Create your views here.
 def homepage(request):
@@ -10,10 +11,21 @@ def homepage(request):
     return render(request, 'index.html', locals())
 
 def showpost(request, slug):
+    try:
+        post = Post.objects.get(slug=slug)
+        if post != None:
+            return render(request, 'post.html', locals())
+        else:
+            return redirect("/")
+    except:
+        return redirect("/")
+
+'''
+def showpost(request, slug):
     post = Post.objects.get(slug=slug) 
     #select * from post where slug=%slug
     return render(request, 'post.html', locals())
-    
+'''    
 
 
 '''
