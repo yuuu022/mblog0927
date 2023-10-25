@@ -4,9 +4,25 @@
 {% endblock headmessage%}
 {% block  content%}
 {% for post in posts%}
-<p style='font-family:微軟正黑體;font-size:14pt;font-weight:bold;'>
-    <a href="/post/{{post.slug}}">{{post.title}}</a>
-</p>
+<div class='card'>
+    <div class'card-header' style='background-color:#F3F3FA'>
+        <p style='font-family:微軟正黑體;font-size:14pt;font-weight:bold;'>
+            <a href="/post/{{post.slug}}">{{post.title}}</a>
+        </p>
+    </div>
+    <div class='card-body' >
+        <p>
+            {{ post.body | truncatechars:40}}
+        </p>
+    </div>
+    <div class='card-footer' style='background-color:#ECF5FF'>
+        <p>
+          發布時間:{{ post.pub_date | date:"Y M d, h:m:s A"}}
+        </p>
+    </div>
+</div>
+
+<br>
 {% endfor %}
-<hr>
+
 {% endblock content%}
