@@ -8,6 +8,8 @@ from django.shortcuts import redirect
 def homepage(request):
     posts = Post.objects.all()
     now = datetime.now()
+    hour = now.timetuple().tm_hour
+    print(f'hour = {hour}')
     return render(request, 'index.html', locals())
 
 def showpost(request, slug):
@@ -30,16 +32,35 @@ def about(request, num=-1):
     else:
         quote = quotes[num]
     return render(request, 'about.html', locals())
-    
-    mhtml = f'''
+def carlist(request, maker=0):
+	car_maker = ['SAAB', 'Ford', 'Honda' ]
+	car_list = [
+        [{'model':'Fiesta', 'price': 203500},
+            {'model':'Focus','price': 605000},
+            {'model':'Mustang','price': 900000}],
+                [{'model':'Fit', 'price': 450000}, 
+                {'model':'City', 'price': 150000}, 
+                {'model':'NSX', 'price':1200000}],
+                [{'model':'Mazda3', 'price': 329999}, 
+                {'model':'Mazda5', 'price': 603000},
+                {'model':'Mazda6', 'price':850000}],]
+
+	maker = maker
+	maker_name =  car_maker[maker]
+	cars = car_list[maker]
+	return render(request, 'carlist.html', locals())
+'''
+        mhtml = f
+'''
+'''
 <html>
 <body>
 <h1>I</h1>
 <h3>am in NTUB</h3>
 <h2>{num}</h2>
 </body></html>
-'''
     return HttpResponse(mhtml)
+'''
 '''
 def showpost(request, slug):
     post = Post.objects.get(slug=slug) 
