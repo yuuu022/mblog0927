@@ -23,6 +23,7 @@ urlpatterns = [
     path('',mv.homepage, name="homepage"),
     path('post/<slug:slug>/', mv.showpost, name="showpost"),
     path('post/',mv.show_all_posts, name='show-all-posts'),
+    path('post/<int:post_id>/comments',mv.show_comments, name='comments'),
     path('about/',mv.about),
     path('about/<int:num>', mv.about,name='about'),
     path('carlist/', mv.carlist),

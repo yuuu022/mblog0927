@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from mysite.models import Post #mysite這個資料夾中匯入先前已設好的東西
+from mysite.models import Post,Comment #mysite這個資料夾中匯入先前已設好的東西
 from django.http import HttpResponse
 from datetime import datetime
 from django.shortcuts import redirect
@@ -25,6 +25,12 @@ def showpost(request, slug):
             return redirect("/")
     except:
         return redirect("/")
+    
+def show_comments(request, post_id):
+    #comments = Comment.objects.filter(post=post_id) 不建議
+    comments = Post.objects.get(id=post_id).comment_set.all()
+    return render(request, 'comments.html', locals())
+
 import random
 def about(request, num=-1):
     quotes=['今日事，今日畢',
