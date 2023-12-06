@@ -9,7 +9,6 @@ def homepage(request):
     posts = Post.objects.all()
     now = datetime.now()
     hour = now.timetuple().tm_hour
-    print(f'hour = {hour}')
     return render(request, 'index.html', locals())
 
 def show_all_posts(request):
@@ -59,6 +58,22 @@ def carlist(request, maker=0):
 	maker_name =  car_maker[maker]
 	cars = car_list[maker]
 	return render(request, 'carlist.html', locals())
+
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
+def new_post(request):
+    print(f'form method: {request.method}')
+    if request.method == 'GET':
+        return  render(request, 'myform_1.html', locals())
+    elif request.method == 'POST':
+        title = request.POST['title']
+        slug = request.POST['slug']
+        content = request.POST['content']
+        post = Post(title=title, slug=slug, body=content)
+        post.save()
+        return HttpResponseRedirect(reverse('show-all-posts'))
+
 '''
         mhtml = f
 '''
