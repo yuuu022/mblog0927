@@ -5,6 +5,7 @@ class Post(models.Model):
     title = models.CharField(max_length = 200) #標題 字元長度
     slug = models.CharField(max_length = 200)
     body = models.TextField()
+    category = models.TextField(null=True)
     pub_date = models.DateTimeField(auto_now=True)#日期 auto_now=True自動取得現在時間
     
     class Meta:
