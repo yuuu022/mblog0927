@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from mysite import views as mv
+from mytest import views as testv
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,5 +30,5 @@ urlpatterns = [
     path('about/<int:num>', mv.about,name='about'),
     path('carlist/', mv.carlist),
     path('carlist/<int:maker>/', mv.carlist, name='carlist-url'),
-    
+    path('test/', testv.index, name="test-new")
 ]

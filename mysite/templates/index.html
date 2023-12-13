@@ -1,8 +1,8 @@
 {% extends "base2.html" %}
 {% block title %}歡迎光臨我的部落格{% endblock %}
 {% block headmessage %}
-<h3 style='font-family:標楷體;'>本站文章列表</a>
-<label for "byear">無意義年份:</label>
+<h3 style='font-family:標楷體;'>本站文章列表</h3> 
+<label for="byear">無意義年份:</label>
 <select name="byear">
     {% for year in years %}
     <option value="{{year}}">西元 {{year}}</option>

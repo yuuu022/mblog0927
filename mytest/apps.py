@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class MytestConfig(AppConfig):
+class MytextConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'mytest'
+    name = 'mytext'

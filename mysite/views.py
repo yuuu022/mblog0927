@@ -71,7 +71,7 @@ def new_post(request):
         title = request.POST['title']
         slug = request.POST['slug']
         content = request.POST['content']
-        category = request.POST.getlist('category')
+        category = request.POST.getlist('content')
         post = Post(title=title, slug=slug, body=content, category=category)
         post.save()
         return HttpResponseRedirect(reverse('show-all-posts'))
