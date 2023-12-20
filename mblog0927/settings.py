@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'mysite' #資料夾的名稱
+    'mysite',
+    'mytext'#資料夾的名稱
 ]
 
 MIDDLEWARE = [
