@@ -1,9 +1,5 @@
-from typing import Any, Dict, Mapping, Optional, Type, Union
 from django import forms
-from django.core.files.base import File
-from django.db.models.base import Model
-from django.forms.utils import ErrorList
-from mytext.models import Post
+from mytext import models
 
 class ContactForm(forms.Form):
     CITY = [
@@ -22,5 +18,23 @@ class ContactForm(forms.Form):
 
 class PostForm(forms.ModelForm):
     class Meta:
-        model = Post
-        fields = ('mood','nickname','message','del_pass')
+        model = models.Post
+        fields = ['mood','nickname','message','del_pass']
+
+    def __init__(self, *args, **kwargs):
+        super(PostForm, self).__init__(*args, **kwargs)
+        self.fields['mood'].label = '現在心情'
+        self.fields['nickname'].label = '你的暱稱'
+        self.fields['message'].label = '心情留言'
+        self.fields['del_pass'].label = '設定密碼'        
+
+class UserRegisterform(forms.Form):
+    user_name = forms.CharField(label='您的姓名', max_length=50, initial='')
+    user_email = forms.CharField(label='電子郵件')
+    user_password = forms.CharField(label='輸入密碼', widget=forms.PasswordInput)
+    user_password_confirm = forms.CharField(label='輸入確認密碼', widget=forms.PasswordInput)
+    
+    
+class LoginForm(forms.Form):
+    user_name = forms.CharField(label='您的帳號', max_length=50, initial='')
+    user_password = forms.CharField(label='輸入密碼', widget=forms.PasswordInput)
