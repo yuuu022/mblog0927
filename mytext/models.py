@@ -16,3 +16,14 @@ class Post(models.Model):
     
     def __str__(self):
         return self.message
+    
+from django.contrib import auth
+
+class Profile(models.Model):
+    user = models.OneToOneField(auth.models.User, on_delete=models.CASCADE) #OneToOneField是1對1的欄位
+    height = models.PositiveIntegerField()
+    male = models.BooleanField(default=False)
+    website = models.URLField(null=True)
+	
+    def __str__(self):
+        return self.user.username
